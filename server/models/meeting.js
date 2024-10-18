@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const MeetingSchema = new Schema({
   meeting_id: {
     type: Schema.Types.ObjectId,
-    default: mongoose.Types.ObjectId,
+    default: () => new mongoose.Types.ObjectId(),
     index: true
   },
   date: {

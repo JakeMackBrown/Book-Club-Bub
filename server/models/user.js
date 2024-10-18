@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const mongoose = require('mongoose')
+const { Schema } = mongoose
 
 const UserSchema = new Schema({
   user_id: {
     type: Schema.Types.ObjectId,
-    default: mongoose.Types.ObjectId,
+    default: () => new mongoose.Types.ObjectId(),
     index: true
   },
   name: {
@@ -24,8 +24,6 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now
   }
-},
-    {timestamps: true}
-)
+}, { timestamps: true })
 
 module.exports = mongoose.model('User', UserSchema)
