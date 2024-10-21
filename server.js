@@ -9,6 +9,8 @@ const bookController = require('./controllers/bookController')
 const meetingController = require('./controllers/meetingController')
 const discussionController = require('./controllers/discussionController')
 
+const path = require('path')
+
 const app = express()
 const PORT = process.env.PORT || 3001
 
@@ -18,6 +20,12 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 
 console.log('Database connected')
+
+app.use(express.static(path.join(__dirname, 'public')))
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+  })
 
 app.get('/', (req, res) => res.send('This is our landing page!'))
 
