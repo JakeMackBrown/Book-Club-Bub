@@ -1,4 +1,4 @@
-const Meeting = require('../models/meeting')
+const { Meeting } = require('../models')
 
 const getAllMeetings = async (req, res) => {
   try {

@@ -1,12 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const MeetingSchema = new Schema({
-  meeting_id: {
-    type: Schema.Types.ObjectId,
-    default: () => new mongoose.Types.ObjectId(),
-    index: true
-  },
+const meetingSchema = new Schema({
   date: {
     type: Date,
     required: true
@@ -24,4 +19,4 @@ const MeetingSchema = new Schema({
     { timestamps: true}
 )
 
-module.exports = mongoose.model('Meeting', MeetingSchema)
+module.exports = meetingSchema

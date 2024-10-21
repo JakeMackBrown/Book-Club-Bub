@@ -1,12 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const DiscussionSchema = new Schema({
-  discussion_id: {
-    type: Schema.Types.ObjectId,
-    default: () => new mongoose.Types.ObjectId(),
-    index: true
-  },
+const discussionSchema = new Schema({
   user_id: {
     type: Schema.Types.ObjectId,
     ref: 'User',
@@ -29,4 +24,4 @@ const DiscussionSchema = new Schema({
     { timestamps: true}
 )
 
-module.exports = mongoose.model('Discussion', DiscussionSchema)
+module.exports = discussionSchema

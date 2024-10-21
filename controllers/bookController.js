@@ -1,4 +1,4 @@
-const Book = require('../models/book')
+const { Book } = require('../models')
 
 const getAllBooks = async (req, res) => {
   try {
@@ -24,7 +24,7 @@ const getBookById = async (req, res) => {
 
 const createBook = async (req, res) => {
   try {
-    const book = new Book(req.body)
+    const book = await new Book(req.body)
     await book.save()
     return res.status(201).json({ book })
   } catch (error) {

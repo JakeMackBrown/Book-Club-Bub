@@ -1,4 +1,4 @@
-const Discussion = require('../models/discussion')
+const { Discussion } = require('../models')
 
 const getAllDiscussions = async (req, res) => {
   try {

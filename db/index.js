@@ -1,15 +1,14 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-const connectDB = async () => {
-    try {
-        await mongoose.connect('mongodb+srv://jakemackbrown:SethTitus1@jakemackbrown.ntxtm.mongodb.net/bookClubDatabase?retryWrites=true&w=majority&appName=JakeMackBrown');
-        console.log('Successfully connected to MongoDB.');
-    } catch (e) {
-        console.error('Database connection error:', e.message);
-        throw e;
-    }
-};
+mongoose
+    .connect('mongodb+srv://jakemackbrown:SethTitus1@jakemackbrown.ntxtm.mongodb.net/bookClubDatabase?retryWrites=true&w=majority&appName=JakeMackBrown')
+    .then(()=> {
+        console.log('connected to MongoDB')
+    })
+    .catch((e) => {
+        console.error('error!', e.message)
+    })
 
-mongoose.set('debug', true);
+const db = mongoose.connection
 
-module.exports = { connectDB };
+module.exports = db
