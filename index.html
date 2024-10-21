@@ -22,9 +22,33 @@
       <button id="books-btn">Books</button>
       <button id="meetings-btn">Meetings</button>
     </section>
+    <section>
+      <h2>Create a New Club</h2>
+      <form action="/create-club" method="POST">
+        <input type="text" name="clubName" placeholder="Club Name" required>
+        <button type="submit">Create Club</button>
+      </form>
+    </section>
+    <section>
+      <h2>Add a Book</h2>
+      <form action="/add-book" method="POST">
+        <input type="text" name="title" placeholder="Book Title" required>
+        <input type="text" name="author" placeholder="Author" required>
+        <input type="text" name="genre" placeholder="Genre" required>
+        <button type="submit">Add Book</button>
+      </form>
+    </section>
+    <section>
+      <h2>Schedule a Meeting</h2>
+      <form action="/schedule-meeting" method="POST">
+        <input type="date" name="date" required>
+        <input type="text" name="location" placeholder="Location" required>
+        <input type="text" name="bookId" placeholder="Book ID" required>
+        <button type="submit">Schedule Meeting</button>
+      </form>
+    </section>
   </main>
   <footer>
     <p>Contact us at: info@bookclubbub.com</p>
   </footer>
 </body>
-</html>
