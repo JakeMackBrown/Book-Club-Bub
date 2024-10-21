@@ -27,8 +27,6 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
   })
 
-app.get('/', (req, res) => res.send('This is our landing page!'))
-
 // User routes
 app.get('/users', userController.getAllUsers)
 app.get('/users/:id', userController.getUserById)
