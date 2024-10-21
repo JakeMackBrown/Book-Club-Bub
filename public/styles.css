@@ -14,7 +14,7 @@
 body {
     font-family: "Gentium Book Plus", serif;
     line-height: 1.6;
-    background-color: #8c9175;
+    background-color: #676b52;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,16 +33,28 @@ header {
     margin-bottom: 30px;
     padding: 10px;
     align-items: center;
-    box-shadow: inset 0 4px 8px rgba(0,0,0,0.3)
+    box-shadow: inset 0 4px 28px rgba(0, 0, 0, 0.3)
 }
   
-nav {
+nav .nav-container {
     display: flex;
-    justify-content: flex-end;
-    align-items: center
-}
+    flex-direction: column;
+    align-items: center;
+  }
   
-nav button {
+  nav .slogan {
+    font-size: 0.8em;
+    margin-bottom: 5px;
+    color: #000000;
+  }
+  
+  nav .nav-buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+  
+  nav button {
     background: #555;
     color: #fff;
     border: none;
@@ -50,7 +62,7 @@ nav button {
     cursor: pointer;
     border-radius: 5px;
     margin-left: 10px
-}
+  }
   
 nav button:hover {
     background: #444
@@ -76,12 +88,13 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px 0;
+    margin: 20px auto;
+    border: 2px solid #ccc;
     background: #fff;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     border-radius: 10px;
-    width: 100%
+    width: 80%
 }
 
 section h2 {
@@ -92,7 +105,8 @@ section h2 {
 section form {
     display: flex;
     flex-direction: column;
-    align-items: center
+    align-items: center;
+    width: 100%
 }
   
 section input,
@@ -102,8 +116,7 @@ section button {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    width: 80%;
-    max-width: 300px
+    width: 80%
 }
 
 section button {
@@ -122,7 +135,8 @@ footer {
     color: #fff;
     padding: 5px 0;
     text-align: center;
-    margin-top: 20px
+    margin-top: 20px;
+    box-shadow: inset 0 4px 18px rgb(106, 106, 106)
 }
 
 @media (min-width: 768px) {
