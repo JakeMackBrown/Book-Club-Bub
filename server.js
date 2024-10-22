@@ -8,6 +8,10 @@ const userController = require('./controllers/userController')
 const bookController = require('./controllers/bookController')
 const meetingController = require('./controllers/meetingController')
 const discussionController = require('./controllers/discussionController')
+const path = require('path')
+const Club = require('./models/club')
+const Book = require('./models/book')
+const Meeting = require('./models/meeting')
 
 const path = require('path')
 
@@ -54,5 +58,17 @@ app.get('/discussions/:id', discussionController.getDiscussionById)
 app.post('/discussions', discussionController.createDiscussion)
 app.put('/discussions/:id', discussionController.updateDiscussion)
 app.delete('/discussions/:id', discussionController.deleteDiscussion)
+
+app.post('./create-club', async (req, res) => {
+  try {
+    const { clubName } = req.body;
+    const newClub = new Club({ name: clubName })
+    await newClub.save()
+    console.log(`Created club: ${clubName}`)
+    res.redirect('/')
+  } catch (error) {
+    res.status(500).send('Server Error')
+  }
+})
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`))
