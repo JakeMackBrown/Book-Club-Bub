@@ -7,6 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script defer src="app.js"></script>
 </head>
 <body>
   <header>
@@ -38,20 +40,56 @@
     </section>
     <section>
       <h2>Add a Book</h2>
-      <form action="/add-book" method="POST">
-        <input type="text" name="title" placeholder="Book Title" required>
-        <input type="text" name="author" placeholder="Author" required>
-        <input type="text" name="genre" placeholder="Genre" required>
-        <button type="submit">Add Book</button>
+      <form class = "addBookForm">
+        <input 
+          required
+          id="title"
+          type="text"
+          name="title"
+          placeholder="Title"
+          />
+          <input 
+          required
+          id="author"
+          type="text"
+          name="author"
+          placeholder="Author"
+          />
+          <input 
+          required
+          id="genre"
+          type="text"
+          name="genre"
+          placeholder="Genre"
+          />
+        <button class="addBookButton">Add Book</button>
       </form>
     </section>
     <section>
       <h2>Schedule a Meeting</h2>
-      <form action="/schedule-meeting" method="POST">
-        <input type="date" name="date" required>
-        <input type="text" name="location" placeholder="Location" required>
-        <input type="text" name="bookId" placeholder="Book ID" required>
-        <button type="submit">Schedule Meeting</button>
+      <form class = "scheduleMeetingForm">
+        <input 
+          required
+          id="date"
+          type="date"
+          name="date"
+          placeholder="Date"
+          />
+          <input 
+          required
+          id="location"
+          type="text"
+          name="location"
+          placeholder="Location"
+          />
+          <input 
+          required
+          id="bookId"
+          type="text"
+          name="book_id"
+          placeholder="Book ID"
+          />
+        <button class="scheduleMeetingButton">Schedule Meeting</button>
       </form>
     </section>
   </main>

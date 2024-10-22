@@ -2,7 +2,7 @@ const { Meeting } = require('../models')
 
 const getAllMeetings = async (req, res) => {
   try {
-    const meetings = await Meeting.find()
+    const meetings = await Meeting.find().populate("book_id")
     res.json(meetings)
   } catch (error) {
     return res.status(500).send(error.message)
@@ -12,7 +12,7 @@ const getAllMeetings = async (req, res) => {
 const getMeetingById = async (req, res) => {
   try {
     const { id } = req.params
-    const meeting = await Meeting.findById(id)
+    const meeting = await Meeting.findById(id).populate("book_id")
     if (meeting) {
       return res.json(meeting)
     }
@@ -24,6 +24,7 @@ const getMeetingById = async (req, res) => {
 
 const createMeeting = async (req, res) => {
   try {
+    console.log(req.body)
     const meeting = new Meeting(req.body)
     await meeting.save()
     return res.status(201).json({ meeting })

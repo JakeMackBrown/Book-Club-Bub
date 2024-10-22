@@ -8,9 +8,7 @@ const userController = require('./controllers/userController')
 const bookController = require('./controllers/bookController')
 const meetingController = require('./controllers/meetingController')
 const discussionController = require('./controllers/discussionController')
-const User = require('./models/user')
-const Book = require('./models/book')
-const Meeting = require('./models/meeting')
+const { User, Book, Meeting } = require('./models')
 
 const path = require('path')
 
@@ -62,18 +60,6 @@ app.post('/create-club', async (req, res) => {
   try {
     const { clubName } = req.body
     console.log(`Creating club: ${clubName}`)
-    res.redirect('/')
-  } catch (error) {
-    res.status(500).send('Server Error')
-  }
-})
-
-app.post('/add-book', async (req, res) => {
-  try {
-    const { title, author, genre } = req.body
-    const newBook = new Book({ title, author, genre })
-    await newBook.save()
-    console.log(`Added book: ${title}, Author: ${author}, Genre: ${genre}`)
     res.redirect('/')
   } catch (error) {
     res.status(500).send('Server Error')
