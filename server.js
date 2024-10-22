@@ -8,7 +8,7 @@ const userController = require('./controllers/userController')
 const bookController = require('./controllers/bookController')
 const meetingController = require('./controllers/meetingController')
 const discussionController = require('./controllers/discussionController')
-const User = require('/models/user')
+const User = require('./models/user')
 const Book = require('./models/book')
 const Meeting = require('./models/meeting')
 
