@@ -22,7 +22,7 @@ app.use(bodyParser.json())
 
 console.log('Database connected')
 
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'client')))
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
@@ -55,6 +55,30 @@ app.get('/discussions/:id', discussionController.getDiscussionById)
 app.post('/discussions', discussionController.createDiscussion)
 app.put('/discussions/:id', discussionController.updateDiscussion)
 app.delete('/discussions/:id', discussionController.deleteDiscussion)
+
+app.get('/clubs', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'books.html'))
+})
+
+app.get('/clubs', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'clubs.html'))
+})
+
+app.get('/meetings', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'meetings.html'))
+})
+
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'login.html'))
+})
+
+app.get('/register', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'register.html'))
+})
+
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dashboard.html'))
+})
 
 app.post('/create-club', async (req, res) => {
   try {
