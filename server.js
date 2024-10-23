@@ -61,10 +61,6 @@ app.post('/discussions', discussionController.createDiscussion)
 app.put('/discussions/:id', discussionController.updateDiscussion)
 app.delete('/discussions/:id', discussionController.deleteDiscussion)
 
-app.get('/clubs', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'books.html'))
-})
-
 app.post('/create-club', async (req, res) => {
   try {
     const { clubName } = req.body

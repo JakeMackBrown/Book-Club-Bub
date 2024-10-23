@@ -3,6 +3,7 @@ const addBookForm = document.querySelector('.addBookForm');
 const scheduleMeetingButton = document.querySelector('.scheduleMeetingButton');
 const scheduleMeetingForm = document.querySelector('.scheduleMeetingForm');
 
+// Event listener for adding a book
 addBookButton.addEventListener('click', async (e) => {
   e.preventDefault();
   const title = document.getElementById('title').value;
@@ -15,13 +16,13 @@ addBookButton.addEventListener('click', async (e) => {
   location.reload(); // Reload the page after adding a book
 });
 
+// Event listener for scheduling a meeting
 scheduleMeetingButton.addEventListener('click', async (e) => {
   e.preventDefault();
   const date = document.getElementById('date').value;
   const location = document.getElementById('location').value;
   const bookId = document.getElementById('bookId').value;
   const data = { date, location, book_id: bookId };
-  console.log(data);
   const res = await axios.post('http://localhost:3001/meetings', data);
   console.log(res);
   scheduleMeetingForm.reset(); // Clear form after submission
@@ -29,8 +30,8 @@ scheduleMeetingButton.addEventListener('click', async (e) => {
 });
 
 // Fetch and display books data in books.html
-document.addEventListener('DOMContentLoaded', async () => {
-  if (window.location.pathname === '/books') {
+window.addEventListener('load', async () => {
+  if (window.location.pathname === '/books.html') {
     try {
       const response = await axios.get('http://localhost:3001/api/books');
       console.log(response.data); // Log the books data from the server
@@ -47,8 +48,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // Fetch and display meetings data in meetings.html
-document.addEventListener('DOMContentLoaded', async () => {
-  if (window.location.pathname === '/meetings') {
+window.addEventListener('load', async () => {
+  if (window.location.pathname === '/meetings.html') {
     try {
       const response = await axios.get('http://localhost:3001/api/meetings');
       console.log(response.data); // Log the meetings data from the server
@@ -63,20 +64,3 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 });
-
-
-// scheduleMeetingButton.addEventListener('click', async (e) => {
-//     e.preventDefault()
-//     const date = document.getElementById('date').value
-//     const location = document.getElementById('location').value
-//     const bookId = document.getElementById('bookId').value
-
-//     const data = {
-//         date: date,
-//         location: location,
-//         book_id: bookId
-//     }
-//     console.log(data)
-//     const res = await axios.get('http://localhost:3001/meetings')
-//     console.log(res)
-// })
