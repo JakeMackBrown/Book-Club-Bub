@@ -2,9 +2,18 @@ document.getElementById('books-btn').addEventListener('click', () => {
     window.location.href = './books.html';
   });
   
-  document.getElementById('meetings-btn').addEventListener('click', () => {
+document.getElementById('meetings-btn').addEventListener('click', () => {
     window.location.href = './meetings.html';
   });
+
+document.getElementById('sign-in-btn').addEventListener('click', () => {
+    window.location.href = './sign-in.html';
+  });
+  
+document.getElementById('register-btn').addEventListener('click', () => {
+    window.location.href = './register.html';
+  });
+  
 
 const addBookButton = document.querySelector('.addBookButton');
 const addBookForm = document.querySelector('.addBookForm');

@@ -1,7 +1,13 @@
+.gentium-book-plus-regular {
+  font-family: "Gentium Book Plus", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 body {
     font-family: 'Gentium Book Plus', serif;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #676b52;
+    color: hsl(0, 0%, 100%);
     margin: 0;
     padding: 0;
   }
