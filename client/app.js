@@ -1,9 +1,9 @@
 document.getElementById('books-btn').addEventListener('click', () => {
-    window.location.href = '/books.html';
+    window.location.href = './books.html';
   });
   
   document.getElementById('meetings-btn').addEventListener('click', () => {
-    window.location.href = '/meetings.html';
+    window.location.href = './meetings.html';
   });
 
 const addBookButton = document.querySelector('.addBookButton');
@@ -35,40 +35,4 @@ scheduleMeetingButton.addEventListener('click', async (e) => {
   console.log(res);
   scheduleMeetingForm.reset(); // Clear form after submission
   location.reload(); // Reload the page after scheduling a meeting
-});
-
-// Fetch and display books data in books.html
-window.addEventListener('load', async () => {
-  if (window.location.pathname === '/books.html') {
-    try {
-      const response = await axios.get('http://localhost:3001/api/books');
-      console.log(response.data); // Log the books data from the server
-      const booksContainer = document.getElementById('books-container');
-      response.data.forEach(book => {
-        const bookItem = document.createElement('div');
-        bookItem.textContent = `${book.title} by ${book.author}, Genre: ${book.genre}`;
-        booksContainer.appendChild(bookItem);
-      });
-    } catch (error) {
-      console.error('Error fetching books:', error);
-    }
-  }
-});
-
-// Fetch and display meetings data in meetings.html
-window.addEventListener('load', async () => {
-  if (window.location.pathname === '/meetings.html') {
-    try {
-      const response = await axios.get('http://localhost:3001/api/meetings');
-      console.log(response.data); // Log the meetings data from the server
-      const meetingsContainer = document.getElementById('meetings-container');
-      response.data.forEach(meeting => {
-        const meetingItem = document.createElement('div');
-        meetingItem.textContent = `Meeting on ${meeting.date} at ${meeting.location}, Book ID: ${meeting.book_id}`;
-        meetingsContainer.appendChild(meetingItem);
-      });
-    } catch (error) {
-      console.error('Error fetching meetings:', error);
-    }
-  }
 });
