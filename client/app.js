@@ -1,3 +1,11 @@
+document.getElementById('books-btn').addEventListener('click', () => {
+    window.location.href = '/books.html';
+  });
+  
+  document.getElementById('meetings-btn').addEventListener('click', () => {
+    window.location.href = '/meetings.html';
+  });
+
 const addBookButton = document.querySelector('.addBookButton');
 const addBookForm = document.querySelector('.addBookForm');
 const scheduleMeetingButton = document.querySelector('.scheduleMeetingButton');
