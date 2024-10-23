@@ -20,6 +20,11 @@ app.use(express.json())
 app.use(logger('dev'))
 app.use(bodyParser.json())
 
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+})
+
 console.log('Database connected')
 
 app.use(express.static(path.join(__dirname, 'client')))
@@ -60,26 +65,6 @@ app.get('/clubs', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'books.html'))
 })
 
-app.get('/clubs', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'clubs.html'))
-})
-
-app.get('/meetings', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'meetings.html'))
-})
-
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'login.html'))
-})
-
-app.get('/register', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'register.html'))
-})
-
-app.get('/dashboard', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'dashboard.html'))
-})
-
 app.post('/create-club', async (req, res) => {
   try {
     const { clubName } = req.body
@@ -89,5 +74,29 @@ app.post('/create-club', async (req, res) => {
     res.status(500).send('Server Error')
   }
 })
+
+// app.post('/books', async (req, res) => {
+//   try {
+//     const { title, author, genre } = req.body;
+//     const newBook = new Book({ title, author, genre });
+//     await newBook.save();
+//     console.log(`Added book: ${title}, Author: ${author}, Genre: ${genre}`);
+//     res.redirect('/');
+//   } catch (error) {
+//     res.status(500).send('Server Error');
+//   }
+// })
+
+// app.post('/meetings', async (req, res) => {
+//   try {
+//     const { date, location, bookId } = req.body;
+//     const newMeeting = new Meeting({ date, location, book_id: bookId });
+//     await newMeeting.save();
+//     console.log(`Scheduled meeting on: ${date} at ${location} for book ID: ${bookId}`);
+//     res.redirect('/');
+//   } catch (error) {
+//     res.status(500).send('Server Error');
+//   }
+// })
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`))
