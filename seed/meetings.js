@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const { connectDB } = require('../../db')
+const db = require('../db')
 const Meeting = require('../models/meeting')
 const Book = require('../models/book')
 
@@ -17,9 +17,8 @@ const main = async () => {
 }
 
 const run = async () => {
-  await connectDB()
   await main()
-  mongoose.connection.close()
+  db.close()
 }
 
 run()

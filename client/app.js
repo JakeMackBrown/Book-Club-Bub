@@ -13,6 +13,15 @@ document.getElementById('sign-in-btn').addEventListener('click', () => {
 document.getElementById('register-btn').addEventListener('click', () => {
     window.location.href = './register.html';
   });
+
+document.getElementById('dashboard-btn').addEventListener('click', () => {
+    window.location.href = './dashboard.html';
+  });
+  
+document.querySelector('nav button').addEventListener('click', () => {
+    window.location.href = './dashboard.html';
+  });
+  
   
 
 const addBookButton = document.querySelector('.addBookButton');

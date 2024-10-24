@@ -71,28 +71,4 @@ app.post('/create-club', async (req, res) => {
   }
 })
 
-// app.post('/books', async (req, res) => {
-//   try {
-//     const { title, author, genre } = req.body;
-//     const newBook = new Book({ title, author, genre });
-//     await newBook.save();
-//     console.log(`Added book: ${title}, Author: ${author}, Genre: ${genre}`);
-//     res.redirect('/');
-//   } catch (error) {
-//     res.status(500).send('Server Error');
-//   }
-// })
-
-// app.post('/meetings', async (req, res) => {
-//   try {
-//     const { date, location, bookId } = req.body;
-//     const newMeeting = new Meeting({ date, location, book_id: bookId });
-//     await newMeeting.save();
-//     console.log(`Scheduled meeting on: ${date} at ${location} for book ID: ${bookId}`);
-//     res.redirect('/');
-//   } catch (error) {
-//     res.status(500).send('Server Error');
-//   }
-// })
-
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`))
