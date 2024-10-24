@@ -1,53 +1,69 @@
-.gentium-book-plus-regular {
-  font-family: "Gentium Book Plus", serif;
-  font-weight: 400;
-  font-style: normal;
+body {
+  font-family: 'Gentium Book Plus', serif;
+  background-color: #676b52;
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
 
-body {
-    font-family: 'Gentium Book Plus', serif;
-    background-color: #676b52;
-    color: hsl(0, 0%, 100%);
-    margin: 0;
-    padding: 0;
-  }
-  
-  header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-  }
-  
-  main {
-    padding: 20px;
-  }
-  
-  #books-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  footer {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-  }
-  
-  nav ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  nav ul li {
-    display: inline;
-    margin: 0 10px;
-  }
-  
-  nav ul li a {
-    color: #fff;
-    text-decoration: none;
-  }
+header {
+  background-color: #3f3f3f;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+main {
+  padding: 20px;
+}
+
+#books-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+#books-container > div {
+  background: white;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 30%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#discussions-container {
+  margin-top: 30px;
+}
+
+#discussions-container > div {
+  background: white;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 10px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
   
