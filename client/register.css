@@ -7,7 +7,7 @@ body {
   }
   
   header {
-    background-color: #676b52; /* same as homepage */
+    background-color: #676b52; 
     color: white;
     padding: 20px 0;
     text-align: center;
@@ -41,7 +41,7 @@ body {
   button {
     padding: 10px;
     border: none;
-    background-color: #676b52; /* same as homepage */
+    background-color: #676b52; 
     color: white;
     border-radius: 5px;
     cursor: pointer;
@@ -52,7 +52,7 @@ body {
   }
   
   footer {
-    background-color: #676b52; /* same as homepage */
+    background-color: #676b52; 
     color: white;
     padding: 10px 0;
     text-align: center;
