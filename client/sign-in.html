@@ -41,13 +41,13 @@
         body: JSON.stringify(data)
       })
       const result = await response.json()
-      if (result.token) {
+      if (response.ok) {
         localStorage.setItem('token', result.token)
         localStorage.setItem('user', JSON.stringify(result.user)) // Storing user information
         alert('Login successful')
         window.location.href = '/dashboard.html' // Redirect to dashboard or another page
       } else {
-        alert(result.message)
+        alert(`Login failed: ${result.message}`)
       }
     })
   </script>
