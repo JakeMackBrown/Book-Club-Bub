@@ -1,4 +1,5 @@
 const { User } = require('../models')
+const jwt = require('jsonwebtoken')
 
 const getAllUsers = async (req, res) => {
   try {
@@ -58,10 +59,41 @@ const deleteUser = async (req, res) => {
   }
 }
 
+const registerUser = async (req, res) => {
+  try {
+    const { name, email, password } = req.body
+    const user = new User({ name, email, password })
+    await user.save()
+    res.status(201).json({ message: 'User registered successfully' })
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+}
+
+const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body
+    const user = await User.findOne({ email })
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid email or password' })
+    }
+    const isMatch = await user.comparePassword(password)
+    if (!isMatch) {
+      return res.status(401).json({ message: 'Invalid email or password' })
+    }
+    const token = jwt.sign({ id: user._id }, 'secretkey', { expiresIn: '1h' })
+    res.json({ token })
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+}
+
 module.exports = {
   getAllUsers,
   getUserById,
   createUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  registerUser,
+  loginUser
 }
