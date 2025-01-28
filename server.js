@@ -10,6 +10,7 @@ const bookController = require('./controllers/bookController')
 const meetingController = require('./controllers/meetingController')
 const discussionController = require('./controllers/discussionController')
 const { User, Book, Meeting } = require('./models')
+const auth = require('./middleware/auth') // Importing auth middleware
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -20,8 +21,8 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 
 app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
-  next();
+  console.log(`${req.method} ${req.url}`)
+  next()
 })
 
 console.log('Database connected')
@@ -70,6 +71,11 @@ app.post('/create-club', async (req, res) => {
   } catch (error) {
     res.status(500).send('Server Error')
   }
+})
+
+// Protected route example
+app.get('/protected-route', auth, (req, res) => {
+  res.send('This is a protected route')
 })
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`))
