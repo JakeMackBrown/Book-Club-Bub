@@ -33,21 +33,25 @@
         email: formData.get('email'),
         password: formData.get('password')
       }
-      const response = await fetch('/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      const result = await response.json()
-      if (response.ok) {
-        localStorage.setItem('token', result.token)
-        localStorage.setItem('user', JSON.stringify(result.user)) // Storing user information
-        alert('Login successful')
-        window.location.href = '/dashboard.html' // Redirect to dashboard or another page
-      } else {
-        alert(`Login failed: ${result.message}`)
+      try {
+        const response = await fetch('/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+        const result = await response.json()
+        if (response.ok) {
+          localStorage.setItem('token', result.token)
+          localStorage.setItem('user', JSON.stringify(result.user)) // Storing user information
+          alert('Login successful')
+          window.location.href = '/dashboard.html' // Redirect to dashboard or another page
+        } else {
+          alert(`Login failed: ${result.message}`)
+        }
+      } catch (error) {
+        alert(`An error occurred: ${error.message}`)
       }
     })
   </script>

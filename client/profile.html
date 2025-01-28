@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <title>Profile</title>
+  <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+  <header>
+    <h1>Profile</h1>
+  </header>
+  <main>
+    <form id="profileForm">
+      <input type="text" name="name" placeholder="Name">
+      <input type="email" name="email" placeholder="Email">
+      <input type="password" name="password" placeholder="Password">
+      <button type="submit">Update Profile</button>
+    </form>
+  </main>
+  <footer>
+    <nav>
+      <ul>
+        <li><a href="./index.html">Home</a></li>
+      </ul>
+    </nav>
+  </footer>
+  <script>
+    document.getElementById('profileForm').addEventListener('submit', async (e) => {
+      e.preventDefault()
+      const formData = new FormData(e.target)
+      const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        password: formData.get('password')
+      }
+      const token = localStorage.getItem('token')
+      const response = await fetch('/profile', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(data)
+      })
+      const result = await response.json()
+      if (response.ok) {
+        alert('Profile updated successfully')
+      } else {
+        alert(`Profile update failed: ${result.error}`)
+      }
+    })
+  </script>
+</body>
+</html>

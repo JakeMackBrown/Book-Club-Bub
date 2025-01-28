@@ -41,6 +41,8 @@ app.put('/users/:id', userController.updateUser)
 app.delete('/users/:id', userController.deleteUser)
 app.post('/register', userController.registerUser)
 app.post('/login', userController.loginUser)
+app.put('/profile', auth, userController.updateUserProfile)
+
 
 // Book routes
 app.get('/books', bookController.getAllBooks)

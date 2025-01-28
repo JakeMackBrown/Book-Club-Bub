@@ -88,6 +88,20 @@ const loginUser = async (req, res) => {
   }
 }
 
+const updateUserProfile = async (req, res) => {
+  try {
+    const { name, email, password } = req.body
+    const user = await User.findById(req.user)
+    if (name) user.name = name
+    if (email) user.email = email
+    if (password) user.password = password
+    await user.save()
+    res.status(200).json({ message: 'Profile updated successfully' })
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+}
+
 module.exports = {
   getAllUsers,
   getUserById,
@@ -95,5 +109,6 @@ module.exports = {
   updateUser,
   deleteUser,
   registerUser,
-  loginUser
+  loginUser,
+  updateUserProfile
 }

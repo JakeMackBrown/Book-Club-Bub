@@ -35,18 +35,22 @@
         email: formData.get('email'),
         password: formData.get('password')
       }
-      const response = await fetch('/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      const result = await response.json()
-      if (response.ok) {
-        alert('Registration successful')
-      } else {
-        alert(`Registration failed: ${result.error}`)
+      try {
+        const response = await fetch('/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+        const result = await response.json()
+        if (response.ok) {
+          alert('Registration successful')
+        } else {
+          alert(`Registration failed: ${result.error}`)
+        }
+      } catch (error) {
+        alert(`An error occurred: ${error.message}`)
       }
     })
   </script>
