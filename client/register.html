@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
   <title>Register</title>
   <link rel="stylesheet" href="register.css">
 </head>
@@ -12,7 +12,7 @@
     <h1>Register</h1>
   </header>
   <main>
-    <form>
+    <form id="registerForm">
       <input type="text" name="name" placeholder="Name" required>
       <input type="email" name="email" placeholder="Email" required>
       <input type="password" name="password" placeholder="Password" required>
@@ -26,5 +26,25 @@
       </ul>
     </nav>
   </footer>
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault()
+      const formData = new FormData(e.target)
+      const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        password: formData.get('password')
+      }
+      const response = await fetch('/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      const result = await response.json()
+      alert(result.message)
+    })
+  </script>
 </body>
 </html>
