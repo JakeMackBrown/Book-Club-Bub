@@ -4,13 +4,12 @@ const db = require('./db')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
 const mongoose = require('mongoose')
+const path = require('path')
 const userController = require('./controllers/userController')
 const bookController = require('./controllers/bookController')
 const meetingController = require('./controllers/meetingController')
 const discussionController = require('./controllers/discussionController')
 const { User, Book, Meeting } = require('./models')
-
-const path = require('path')
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -30,8 +29,8 @@ console.log('Database connected')
 app.use(express.static(path.join(__dirname, 'client')))
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-  })
+  res.sendFile(path.join(__dirname, 'index.html'))
+})
 
 // User routes
 app.get('/users', userController.getAllUsers)
@@ -39,6 +38,8 @@ app.get('/users/:id', userController.getUserById)
 app.post('/users', userController.createUser)
 app.put('/users/:id', userController.updateUser)
 app.delete('/users/:id', userController.deleteUser)
+app.post('/register', userController.registerUser)
+app.post('/login', userController.loginUser)
 
 // Book routes
 app.get('/books', bookController.getAllBooks)
