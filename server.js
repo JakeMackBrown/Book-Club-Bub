@@ -46,6 +46,21 @@ app.post('/register', userController.registerUser)
 app.post('/login', userController.loginUser)
 app.put('/profile', auth, userController.updateUserProfile)
 
+// Add the /profile route to fetch user data
+app.get('/profile', auth, (req, res) => {
+  const userId = req.user // Assuming auth middleware sets req.user
+  User.findById(userId)
+    .then(user => {
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' })
+      }
+      res.json(user)
+    })
+    .catch(error => {
+      res.status(500).json({ error: 'Internal server error' })
+    })
+})
+
 // Book routes
 app.get('/books', bookController.getAllBooks)
 app.get('/books/:id', bookController.getBookById)

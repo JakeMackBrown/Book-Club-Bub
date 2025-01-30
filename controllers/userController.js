@@ -81,12 +81,13 @@ const loginUser = async (req, res) => {
     if (!isMatch) {
       return res.status(401).json({ message: 'Invalid email or password' })
     }
-    const token = jwt.sign({ id: user._id }, 'secretkey', { expiresIn: '1h' })
-    res.json({ token })
+    const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, { expiresIn: '1h' })
+    res.json({ token, user: { id: user._id, name: user.name, email: user.email } })
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
 }
+
 
 const updateUserProfile = async (req, res) => {
   try {
