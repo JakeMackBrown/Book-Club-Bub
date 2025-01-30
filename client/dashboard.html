@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
   <title>Dashboard</title>
   <link rel="stylesheet" href="dashboard.css">
 </head>
@@ -13,9 +13,9 @@
   </header>
   <main>
     <section>
-        <h2>Overview</h2>
-        <p>Welcome to your dashboard. Here, you can navigate to different sections of the site to manage your book club activities.</p>
-      </section>
+      <h2>Overview</h2>
+      <p>Welcome to your dashboard. Here, you can navigate to different sections of the site to manage your book club activities.</p>
+    </section>
     <section>
       <h2>Navigation</h2>
       <nav>
@@ -25,22 +25,43 @@
           <li><a href="./meetings.html">Meetings</a></li>
           <li><a href="/clubs.html">Clubs</a></li>
           <li><a href="./profile.html">Profile</a></li>
-          <li><a href="./sign-in.html">Sign In</a></li>
-          <li><a href="./register.html">Register</a></li>
+          <li id="authLink"><a href="./sign-in.html">Sign In</a></li>
+          <li id="registerLink"><a href="./register.html">Register</a></li>
         </ul>
       </nav>
     </section>
-    <button id="logoutButton">Logout</button>
   </main>
   <footer>
     <p>Contact us at: info@bookclubbub.com</p>
   </footer>
   <script>
-    document.getElementById('logoutButton').addEventListener('click', () => {
-      localStorage.removeItem('token')
-      localStorage.removeItem('user')
-      alert('You have been logged out')
-      window.location.href = '/index.html'
+    document.addEventListener('DOMContentLoaded', () => {
+      const token = localStorage.getItem('token')
+      const authLink = document.getElementById('authLink')
+      const registerLink = document.getElementById('registerLink')
+
+      if (token) {
+        authLink.innerHTML = '<a href="#" id="signOutLink">Sign Out</a>'
+        const signOutLink = document.getElementById('signOutLink')
+        signOutLink.addEventListener('click', () => {
+          localStorage.removeItem('token')
+          localStorage.removeItem('user')
+          alert('You have been signed out.')
+          window.location.href = './index.html'
+        })
+
+        const user = JSON.parse(localStorage.getItem('user'))
+        const welcomeMessage = document.createElement('span')
+        welcomeMessage.textContent = `Welcome, ${user.name}`
+        welcomeMessage.classList.add('welcome-message') // Adding class for styling
+        document.querySelector('nav > ul').prepend(welcomeMessage)
+
+        // Hide the register link
+        registerLink.style.display = 'none'
+      } else {
+        authLink.innerHTML = '<a href="./sign-in.html">Sign In</a>'
+        registerLink.style.display = 'block'
+      }
     })
   </script>
 </body>

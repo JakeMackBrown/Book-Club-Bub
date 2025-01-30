@@ -1,47 +1,72 @@
 body {
-    font-family: 'Gentium Book Plus', serif;
-    background-color: #f4f4f4;
-    color: #333;
-    margin: 0;
-    padding: 0
-  }
-  
-  header {
-    background-color: #676b52; 
-    color: white;
-    padding: 20px 0;
-    text-align: center
-  }
-  
-  main {
-    padding: 20px
-  }
-  
-  nav ul {
-    list-style: none;
-    padding: 0
-  }
-  
-  nav ul li {
-    margin-bottom: 10px
-  }
-  
-  nav ul li a {
-    background: #333;
-    color: white;
-    padding: 10px 15px;
-    text-decoration: none;
-    border-radius: 5px;
-    display: inline-block
-  }
-  
-  nav ul li a:hover {
-    background: rgb(141, 6, 6)
-  }
-  
-  footer {
-    background-color: #333; 
-    color: white;
-    padding: 10px 0;
-    text-align: center
-  }
+  font-family: 'Gentium Book Plus', serif;
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #676b52; 
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+main {
+  padding: 20px;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  margin-bottom: 10px;
+}
+
+nav ul li a {
+  background: #333;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+nav ul li a:hover {
+  background: rgb(141, 6, 6);
+}
+
+footer {
+  background-color: #333; 
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+}
+
+/* Styling for Logout button */
+#logoutButton {
+  background: #333;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  display: inline-block;
+  font-family: 'Gentium Book Plus', serif;
+}
+
+#logoutButton:hover {
+  background: rgb(141, 6, 6);
+}
+
+/* Styling for Welcome message */
+.welcome-message {
+  font-size: 1.2em;
+  color: #676b52;
+  font-weight: bold;
+  margin-bottom: 20px;
+}

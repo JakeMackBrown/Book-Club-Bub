@@ -6,20 +6,22 @@
   <link rel="icon" type="image/png" href="client/assets/favicon.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script defer src="app.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script defer src="app.js"></script>
 </head>
 <body>
   <header>
     <img src="https://i.pinimg.com/originals/63/2f/17/632f174c6034cf2e0eb524e88e4a981b.png" alt="Book Club Bub Logo">
     <nav>
-        <div>
+        <div class="nav-container">
             <span class="slogan">Literature, not Literachore</span>
-            <button id = "dashboardbtn">Dashboard</button>
-            <button id = "sign-in-btn">Sign In</button>
-            <button id = "register-btn">Register</button>
+            <div class="nav-buttons">
+                <button id="dashboard-btn">Dashboard</button>
+                <button id="sign-in-btn">Sign In</button>
+                <button id="register-btn">Register</button>
+            </div>
         </div>
     </nav>
   </header>
@@ -27,7 +29,7 @@
     <h1>Book Club Bub</h1>
     <p>It's time to hit the books.</p>
     <section>
-      <button id="dashboard-btn">Dashboard</button>
+      <button id="dashboard-btn-main">Dashboard</button>
       <button id="book-club-btn">Book Club</button>
       <button id="books-btn">Books</button>
       <button id="meetings-btn">Meetings</button>
@@ -41,55 +43,55 @@
     </section>
     <section>
       <h2>Add a Book</h2>
-      <form action = "/books" method = "POST" class = "addBookForm">
+      <form action="/books" method="POST" class="addBookForm">
         <input 
           required
           id="title"
           type="text"
           name="title"
           placeholder="Title"
-          />
-          <input 
+        />
+        <input 
           required
           id="author"
           type="text"
           name="author"
           placeholder="Author"
-          />
-          <input 
+        />
+        <input 
           required
           id="genre"
           type="text"
           name="genre"
           placeholder="Genre"
-          />
+        />
         <button class="addBookButton">Add Book</button>
       </form>
     </section>
     <section>
       <h2>Schedule a Meeting</h2>
-      <form action = "/meetings" method = "POST" class = "scheduleMeetingForm">
+      <form action="/meetings" method="POST" class="scheduleMeetingForm">
         <input 
           required
           id="date"
           type="date"
           name="date"
           placeholder="Date"
-          />
-          <input 
+        />
+        <input 
           required
           id="location"
           type="text"
           name="location"
           placeholder="Location"
-          />
-          <input 
+        />
+        <input 
           required
           id="bookId"
           type="text"
           name="book_id"
           placeholder="Book ID"
-          />
+        />
         <button class="scheduleMeetingButton">Schedule Meeting</button>
       </form>
     </section>
@@ -97,5 +99,46 @@
   <footer>
     <p>Contact us at: info@bookclubbub.com</p>
   </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const token = localStorage.getItem('token')
+      const signInBtn = document.getElementById('sign-in-btn')
+      const registerBtn = document.getElementById('register-btn')
+      const dashboardBtn = document.getElementById('dashboard-btn')
+      const dashboardBtnMain = document.getElementById('dashboard-btn-main')
+
+      if (token) {
+        signInBtn.textContent = 'Sign Out'
+        signInBtn.addEventListener('click', () => {
+          localStorage.removeItem('token')
+          localStorage.removeItem('user')
+          alert('You have been signed out.')
+          window.location.href = './index.html'
+        })
+
+        const user = JSON.parse(localStorage.getItem('user'))
+        const welcomeMessage = document.createElement('span')
+        welcomeMessage.textContent = `Welcome, ${user.name}`
+        document.querySelector('nav > div').prepend(welcomeMessage)
+
+        // Hide the register button
+        registerBtn.style.display = 'none'
+        // Show dashboard buttons
+        dashboardBtn.style.display = 'block'
+        dashboardBtnMain.style.display = 'block'
+        dashboardBtnMain.addEventListener('click', () => {
+          window.location.href = './dashboard.html'
+        })
+      } else {
+        signInBtn.textContent = 'Sign In'
+        signInBtn.addEventListener('click', () => {
+          window.location.href = './sign-in.html'
+        })
+        registerBtn.style.display = 'block'
+        dashboardBtn.style.display = 'none'
+        dashboardBtnMain.style.display = 'none'
+      }
+    })
+  </script>
 </body>
 </html>

@@ -46,7 +46,7 @@
           localStorage.setItem('token', result.token)
           localStorage.setItem('user', JSON.stringify(result.user)) // Storing user information
           alert('Login successful')
-          window.location.href = '/dashboard.html' // Redirect to dashboard or another page
+          window.location.href = '/index.html' // Redirect to home or another page
         } else {
           alert(`Login failed: ${result.message}`)
         }
@@ -54,6 +54,6 @@
         alert(`An error occurred: ${error.message}`)
       }
     })
-  </script>  
+  </script>
 </body>
 </html>
