@@ -11,6 +11,9 @@ const meetingController = require('./controllers/meetingController')
 const discussionController = require('./controllers/discussionController')
 const { User, Book, Meeting } = require('./models')
 const auth = require('./middleware/auth') // Importing auth middleware
+const dotenv = require('dotenv')
+
+dotenv.config()
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -43,27 +46,26 @@ app.post('/register', userController.registerUser)
 app.post('/login', userController.loginUser)
 app.put('/profile', auth, userController.updateUserProfile)
 
-
 // Book routes
 app.get('/books', bookController.getAllBooks)
 app.get('/books/:id', bookController.getBookById)
-app.post('/books', bookController.createBook)
-app.put('/books/:id', bookController.updateBook)
-app.delete('/books/:id', bookController.deleteBook)
+app.post('/books', auth, bookController.createBook) // Protected route
+app.put('/books/:id', auth, bookController.updateBook) // Protected route
+app.delete('/books/:id', auth, bookController.deleteBook) // Protected route
 
 // Meeting routes
 app.get('/meetings', meetingController.getAllMeetings)
 app.get('/meetings/:id', meetingController.getMeetingById)
-app.post('/meetings', meetingController.createMeeting)
-app.put('/meetings/:id', meetingController.updateMeeting)
-app.delete('/meetings/:id', meetingController.deleteMeeting)
+app.post('/meetings', auth, meetingController.createMeeting) // Protected route
+app.put('/meetings/:id', auth, meetingController.updateMeeting) // Protected route
+app.delete('/meetings/:id', auth, meetingController.deleteMeeting) // Protected route
 
 // Discussion routes
 app.get('/discussions', discussionController.getAllDiscussions)
 app.get('/discussions/:id', discussionController.getDiscussionById)
-app.post('/discussions', discussionController.createDiscussion)
-app.put('/discussions/:id', discussionController.updateDiscussion)
-app.delete('/discussions/:id', discussionController.deleteDiscussion)
+app.post('/discussions', auth, discussionController.createDiscussion) // Protected route
+app.put('/discussions/:id', auth, discussionController.updateDiscussion) // Protected route
+app.delete('/discussions/:id', auth, discussionController.deleteDiscussion) // Protected route
 
 app.post('/create-club', async (req, res) => {
   try {
