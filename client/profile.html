@@ -15,6 +15,7 @@
     <div id="profileContainer">
       <h2>Profile Details</h2>
       <form id="profileForm">
+        <input type="file" id="profilePicture" name="profilePicture" accept="image/*">
         <input type="text" id="name" name="name" placeholder="Name" required>
         <input type="email" id="email" name="email" placeholder="Email" required>
         <button type="submit">Update Profile</button>
@@ -51,8 +52,18 @@
         }
 
         const user = await response.json()
+        console.log('Fetched user data:', user) // Log user data
         document.getElementById('name').value = user.name
         document.getElementById('email').value = user.email
+        // Display profile picture if available
+        if (user.profilePicture) {
+          console.log('Profile picture path:', user.profilePicture) // Log profile picture path
+          const profilePicture = document.createElement('img')
+          profilePicture.src = user.profilePicture
+          profilePicture.alt = "Profile Picture"
+          profilePicture.classList.add('profile-picture') // Add the CSS class for styling
+          document.getElementById('profileContainer').prepend(profilePicture)
+        }
       } catch (error) {
         console.error('Error fetching user data:', error)
         alert('Failed to fetch user data.')
@@ -70,23 +81,20 @@
       }
 
       const formData = new FormData(e.target)
-      const data = {
-        name: formData.get('name'),
-        email: formData.get('email')
-      }
 
       try {
         const response = await fetch('/profile', {
           method: 'PUT',
           headers: {
-            'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
           },
-          body: JSON.stringify(data)
+          body: formData
         })
         const result = await response.json()
         if (response.ok) {
           alert('Profile updated successfully')
+          // Refresh the page to show the updated profile picture
+          window.location.reload()
         } else {
           alert(`Failed to update profile: ${result.error}`)
         }

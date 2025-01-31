@@ -12,6 +12,7 @@ const discussionController = require('./controllers/discussionController')
 const { User, Book, Meeting } = require('./models')
 const auth = require('./middleware/auth') // Importing auth middleware
 const dotenv = require('dotenv')
+const multer = require('multer')
 
 dotenv.config()
 
@@ -22,6 +23,7 @@ app.use(cors())
 app.use(express.json())
 app.use(logger('dev'))
 app.use(bodyParser.json())
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`)
@@ -44,7 +46,6 @@ app.put('/users/:id', userController.updateUser)
 app.delete('/users/:id', userController.deleteUser)
 app.post('/register', userController.registerUser)
 app.post('/login', userController.loginUser)
-app.put('/profile', auth, userController.updateUserProfile)
 
 // Add the /profile route to fetch user data
 app.get('/profile', auth, (req, res) => {
@@ -59,6 +60,34 @@ app.get('/profile', auth, (req, res) => {
     .catch(error => {
       res.status(500).json({ error: 'Internal server error' })
     })
+})
+
+// Profile update route with multer for profile picture upload
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/')
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${req.user.id}${path.extname(file.originalname)}`)
+  }
+})
+
+const upload = multer({ storage })
+
+app.put('/profile', auth, upload.single('profilePicture'), async (req, res) => {
+  try {
+    const { name, email, password } = req.body
+    const user = await User.findById(req.user)
+    if (name) user.name = name
+    if (email) user.email = email
+    if (password) user.password = password
+    if (req.file) user.profilePicture = `/uploads/${req.file.filename}`
+    await user.save()
+    res.status(200).json({ message: 'Profile updated successfully' })
+  } catch (error) {
+    console.error('Error updating profile:', error) // Log the error for debugging
+    res.status(500).json({ error: 'Internal server error' })
+  }
 })
 
 // Book routes

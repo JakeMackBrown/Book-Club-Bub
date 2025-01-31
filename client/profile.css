@@ -74,4 +74,13 @@ body {
     color: white;
     text-decoration: none;
   }
-  
+
+/* Profile picture styling */
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover; /* Ensures the image covers the entire area */
+  display: block; /* Center the image */
+  margin: 0 auto 1rem; /* Add some margin */
+}
