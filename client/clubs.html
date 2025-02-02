@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Clubs</title>
+  <link rel="stylesheet" href="clubs.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>Book Clubs</h1>
+  </header>
+  <main>
+    <section id="club-info">
+      <h2>About Our Book Clubs</h2>
+      <p>Join one of our book clubs to engage with fellow book lovers. Share your thoughts, attend meetings, and discover new reads.</p>
+    </section>
+    <section id="club-list">
+      <h2>Existing Book Clubs</h2>
+      <ul>
+        <li><strong>Fiction Lovers Club</strong> - Meets on the first Monday of each month.</li>
+        <li><strong>Non-Fiction Explorers</strong> - Meets on the third Wednesday of each month.</li>
+        <li><strong>Sci-Fi Enthusiasts</strong> - Meets on the second Saturday of each month.</li>
+        <li><strong>Mystery Maniacs</strong> - Meets on the last Friday of each month.</li>
+      </ul>
+    </section>
+    <section id="create-club">
+      <h2>Create a New Book Club</h2>
+      <form id="createClubForm">
+        <input type="text" id="clubName" name="clubName" placeholder="Club Name" required>
+        <input type="text" id="clubDescription" name="clubDescription" placeholder="Club Description" required>
+        <button type="submit">Create Club</button>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <nav>
+      <ul>
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./books.html">Books</a></li>
+        <li><a href="./meetings.html">Meetings</a></li>
+      </ul>
+    </nav>
+  </footer>
+  <script>
+    // Handle form submission without backend integration
+    document.getElementById('createClubForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('New club created! (This is a placeholder, no backend integration)');
+    });
+  </script>
+</body>
+</html>

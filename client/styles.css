@@ -61,6 +61,23 @@ nav button:hover {
     background: rgb(141, 6, 6);
 }
 
+/* Add the .button class for link styling */
+.button {
+    background: #555;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
+    text-decoration: none;
+    display: inline-block;
+    font-family: "Gentium Book Plus", serif;
+}
+
+.button:hover {
+    background: rgb(141, 6, 6);
+}
+
 main {
     text-align: center;
     max-width: 800px;

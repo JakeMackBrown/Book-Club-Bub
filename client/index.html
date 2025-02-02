@@ -30,7 +30,7 @@
     <p>It's time to hit the books.</p>
     <section>
       <button id="dashboard-btn-main">Dashboard</button>
-      <button id="book-club-btn">Book Club</button>
+      <button id="book-club-btn" onclick="window.location.href='./clubs.html'">Book Club</button>
       <button id="books-btn">Books</button>
       <button id="meetings-btn">Meetings</button>
     </section>
@@ -106,6 +106,9 @@
       const registerBtn = document.getElementById('register-btn')
       const dashboardBtn = document.getElementById('dashboard-btn')
       const dashboardBtnMain = document.getElementById('dashboard-btn-main')
+      const booksBtn = document.getElementById('books-btn')
+      const meetingsBtn = document.getElementById('meetings-btn')
+      const bookClubBtn = document.getElementById('book-club-btn')
 
       if (token) {
         signInBtn.textContent = 'Sign Out'
@@ -129,6 +132,15 @@
         dashboardBtnMain.addEventListener('click', () => {
           window.location.href = './dashboard.html'
         })
+        booksBtn.addEventListener('click', () => {
+          window.location.href = './books.html'
+        })
+        meetingsBtn.addEventListener('click', () => {
+          window.location.href = './meetings.html'
+        })
+        bookClubBtn.addEventListener('click', () => {
+          window.location.href = './clubs.html'
+        })
       } else {
         signInBtn.textContent = 'Sign In'
         signInBtn.addEventListener('click', () => {
@@ -137,6 +149,15 @@
         registerBtn.style.display = 'block'
         dashboardBtn.style.display = 'none'
         dashboardBtnMain.style.display = 'none'
+        booksBtn.addEventListener('click', () => {
+          window.location.href = './books.html'
+        })
+        meetingsBtn.addEventListener('click', () => {
+          window.location.href = './meetings.html'
+        })
+        bookClubBtn.addEventListener('click', () => {
+          window.location.href = './clubs.html'
+        })
       }
     })
   </script>
