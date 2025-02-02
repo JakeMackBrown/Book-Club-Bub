@@ -8,7 +8,6 @@ const path = require('path')
 const userController = require('./controllers/userController')
 const bookController = require('./controllers/bookController')
 const meetingController = require('./controllers/meetingController')
-const discussionController = require('./controllers/discussionController')
 const { User, Book, Meeting } = require('./models')
 const auth = require('./middleware/auth') // Importing auth middleware
 const dotenv = require('dotenv')
@@ -103,13 +102,6 @@ app.get('/meetings/:id', meetingController.getMeetingById)
 app.post('/meetings', auth, meetingController.createMeeting) // Protected route
 app.put('/meetings/:id', auth, meetingController.updateMeeting) // Protected route
 app.delete('/meetings/:id', auth, meetingController.deleteMeeting) // Protected route
-
-// Discussion routes
-app.get('/discussions', discussionController.getAllDiscussions)
-app.get('/discussions/:id', discussionController.getDiscussionById)
-app.post('/discussions', auth, discussionController.createDiscussion) // Protected route
-app.put('/discussions/:id', auth, discussionController.updateDiscussion) // Protected route
-app.delete('/discussions/:id', auth, discussionController.deleteDiscussion) // Protected route
 
 app.post('/create-club', async (req, res) => {
   try {
