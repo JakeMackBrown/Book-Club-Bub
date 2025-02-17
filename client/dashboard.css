@@ -17,26 +17,52 @@ main {
   padding: 20px;
 }
 
-nav ul {
+section {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.welcome-section h2 {
+  color: #676b52;
+  font-size: 1.8em;
+}
+
+.quick-links nav ul {
   list-style: none;
   padding: 0;
 }
 
-nav ul li {
+.quick-links nav ul li {
   margin-bottom: 10px;
 }
 
-nav ul li a {
+.quick-links nav ul li a {
   background: #333;
   color: white;
   padding: 10px 15px;
   text-decoration: none;
   border-radius: 5px;
   display: inline-block;
+  font-family: 'Gentium Book Plus', serif;
 }
 
-nav ul li a:hover {
+.quick-links nav ul li a:hover {
   background: rgb(141, 6, 6);
+}
+
+.activity-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.activity-section ul li {
+  background: #eee;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 footer {
@@ -44,29 +70,4 @@ footer {
   color: white;
   padding: 10px 0;
   text-align: center;
-}
-
-/* Styling for Logout button */
-#logoutButton {
-  background: #333;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px;
-  display: inline-block;
-  font-family: 'Gentium Book Plus', serif;
-}
-
-#logoutButton:hover {
-  background: rgb(141, 6, 6);
-}
-
-/* Styling for Welcome message */
-.welcome-message {
-  font-size: 1.2em;
-  color: #676b52;
-  font-weight: bold;
-  margin-bottom: 20px;
 }

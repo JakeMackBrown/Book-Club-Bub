@@ -12,23 +12,31 @@
     <h1>Dashboard</h1>
   </header>
   <main>
-    <section>
-      <h2>Overview</h2>
-      <p>Welcome to your dashboard. Here, you can navigate to different sections of the site to manage your book club activities.</p>
+    <section class="welcome-section">
+      <h2>Welcome, User</h2>
+      <p>Your personal space to manage book club activities.</p>
     </section>
-    <section>
-      <h2>Navigation</h2>
+    <section class="quick-links">
+      <h2>Quick Links</h2>
       <nav>
         <ul>
           <li><a href="./index.html">Home</a></li>
           <li><a href="./books.html">Books</a></li>
           <li><a href="./meetings.html">Meetings</a></li>
-          <li><a href="/clubs.html">Clubs</a></li>
+          <li><a href="./clubs.html">Clubs</a></li>
           <li><a href="./profile.html">Profile</a></li>
           <li id="authLink"><a href="./sign-in.html">Sign In</a></li>
           <li id="registerLink"><a href="./register.html">Register</a></li>
         </ul>
       </nav>
+    </section>
+    <section class="activity-section">
+      <h2>Recent Activities</h2>
+      <ul>
+        <li>Joined the Fiction Lovers Club</li>
+        <li>Added a new book: "The Great Gatsby" by F. Scott Fitzgerald</li>
+        <li>Scheduled a meeting for the Sci-Fi Enthusiasts Club</li>
+      </ul>
     </section>
   </main>
   <footer>
@@ -51,10 +59,8 @@
         })
 
         const user = JSON.parse(localStorage.getItem('user'))
-        const welcomeMessage = document.createElement('span')
-        welcomeMessage.textContent = `Welcome, ${user.name}`
-        welcomeMessage.classList.add('welcome-message') // Adding class for styling
-        document.querySelector('nav > ul').prepend(welcomeMessage)
+        const welcomeSection = document.querySelector('.welcome-section h2')
+        welcomeSection.textContent = `Welcome, ${user.name}`
 
         // Hide the register link
         registerLink.style.display = 'none'
